@@ -3,20 +3,21 @@ library(raster)
 library(stringr)
 library(threadr)
 library(lubridate)
-library(readr)
 
 # setwd("D:/website_MODIS/AOD_web/2015_AOD_tiff_1km")
+setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2011_MODIS_processed/2011_AOD_tiff_1km")
+# setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2012_MODIS_processed/2012_AOD_tiff_1km")
 # setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2013_MODIS_processed/2013_AOD_tiff_1km")
 # setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2014_MODIS_processed/2014_AOD_tiff_1km")
 # setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2015_MODIS_processed/2015_AOD_tiff_1km")
-setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2016_MODIS_processed/2016_AOD_tiff_1km")
+# setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2016_MODIS_processed/2016_AOD_tiff_1km")
 
 
 filenames <- list.files(pattern = "\\.tif$")
 # file <- filenames[1]
 file <- filenames
 
-dir <- "Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2016_Terra_Aqua"
+dir <- "Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2011_Terra_Aqua"
 DAYS <- str_sub(list.files(dir), start = 1, end = -1)
 
 
@@ -47,7 +48,7 @@ MINUTES <- str_sub(list.files(dir_DAY), start = 21, end = -23)
 HOUR_AVG <- mean(as.numeric(HOURS))
 MINUTES_AVG <- mean(as.numeric(MINUTES))
 
-AVG_HOUR <- mean(HOUR_AVG, hour_avg) + 4
+AVG_HOUR <- mean(HOUR_AVG, hour_avg) + 4 # because of the GMT time
 AVG_MIN <- mean(MINUTES_AVG, minutes_avg)
 AVG_time <- cbind(AVG_HOUR, AVG_MIN)
 
@@ -59,10 +60,10 @@ AOD_pts$Date <- paste(date,HOUR_AVG)
 AOD_pts <- AOD_pts %>%
   mutate(Date = ymd_hm(Date)) 
 
-# create a csv folder inside the 201i_AOD_tiff_1km directory
-write_csv(AOD_pts, file = paste("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2013_MODIS_processed/csv/",date,".csv", sep = ""), row.names=FALSE)
+# manually create a csv folder inside the 201i_AOD_tiff_1km directory
+write.csv(AOD_pts, file = paste("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2011_MODIS_processed/csv/",date,".csv", sep = ""), row.names=FALSE)
 
-write.csv(AVG_time, file = paste("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2016_MODIS_processed/csv/AVG_time.csv"))
+write.csv(AVG_time, file = paste("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2011_MODIS_processed/csv/AVG_time.csv"))
 # print <- i
 
 print <- AVG_time

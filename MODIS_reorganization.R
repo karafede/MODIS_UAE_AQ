@@ -13,7 +13,7 @@ library(readr)
 
 # script to re-organise all hdf file downloaded from the website of LADADS NASA into folders by day number
 # setwd("E:/MASDAR_FK/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2016_Terra_Aqua")
-setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2012_Terra_Aqua")
+setwd("Z:/_SHARED_FOLDERS/Air Quality/Phase 1/Pathflow of Phase I_DG/MODIS_LAADS_NASA/2011_Terra_Aqua")
 
 
 # folder_day <- as.character("002")
