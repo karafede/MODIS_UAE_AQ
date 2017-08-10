@@ -27,23 +27,27 @@ Overpass_time <- as.data.frame(str_sub(Overpass[,1], start = 13, end = -63))
 colnames(Overpass_time) <- "overpass_time"
 
 # generate a sequence of dates
-days_1 <- seq(ISOdate(2017,01,19), by = "day", length.out = 38)
+days_1 <- seq(ISOdate(2017,06,01), by = "day", length.out = 80)
 days_1 <- as.data.frame(str_sub(days_1, start = 1, end = -10))
 colnames(days_1) <- "date"
 
-days_2 <- seq(ISOdate(2017,02,27), by = "day", length.out = 15)
+days_2 <- seq(ISOdate(2017,09,22), by = "day", length.out = 15)
 days_2 <- as.data.frame(str_sub(days_2, start = 1, end = -10))
 colnames(days_2) <- "date"
 
-days_3 <- seq(ISOdate(2017,03,15), by = "day", length.out = 15)
+days_3 <- seq(ISOdate(2017,09,07), by = "day", length.out = 15)
 days_3 <- as.data.frame(str_sub(days_3, start = 1, end = -10))
 colnames(days_3) <- "date"
 
-days_4 <- seq(ISOdate(2017,03,31), by = "day", length.out = 62)
+days_4 <- seq(ISOdate(2017,09,23), by = "day", length.out = 72)
 days_4 <- as.data.frame(str_sub(days_4, start = 1, end = -10))
 colnames(days_4) <- "date"
 
-days <- rbind(days_1, days_2, days_3, days_4)
+days_5 <- seq(ISOdate(2017,12,05), by = "day", length.out = 27)
+days_5 <- as.data.frame(str_sub(days_5, start = 1, end = -10))
+colnames(days_5) <- "date"
+
+days <- rbind(days_1, days_2, days_3, days_4, days_5)
 
 Overpass <- cbind(days, Overpass_date, Overpass_time)
 

@@ -108,8 +108,31 @@ filenames_MODIS_10k_Aqua <- unlist(str_extract_all(matches_Aqua, ".+(.hdf$)"))
 filenames_MODIS_10k_Aqua <- sort(filenames_MODIS_10k_Aqua)
 
 # start downloading data in the main directory -----------------------
-mapply(download.file, filenames_MODIS_10k_Terra,basename(filenames_MODIS_10k_Terra)) 
-mapply(download.file, filenames_MODIS_10k_Aqua,basename(filenames_MODIS_10k_Aqua)) 
+
+ 
+# mapply(download.file, filenames_MODIS_10k_Terra,basename(filenames_MODIS_10k_Terra)) 
+# mapply(download.file, filenames_MODIS_10k_Aqua,basename(filenames_MODIS_10k_Aqua)) 
+
+#### newly added
+
+
+tryCatch({
+  mapply(download.file, filenames_MODIS_10k_Terra,basename(filenames_MODIS_10k_Terra))
+
+}, error= function(err) { print(paste0("No TERRA Today"))
+
+}, finally = {
+
+})
+
+tryCatch({
+  mapply(download.file, filenames_MODIS_10k_Aqua,basename(filenames_MODIS_10k_Aqua))
+
+}, error= function(err) { print(paste0("No AQUA Today"))
+
+}, finally = {
+
+})
 
 
 ###############################################################################
@@ -214,6 +237,8 @@ extract_HDF <- function (file) {      ## this is the filenames
 
 BBB <- lapply(filenames, extract_HDF)
 
+# delete HDF files
+if (file.exists(filenames)) file.remove(filenames)  
 
 ######################################################################################
 ######################################################################################
@@ -321,8 +346,8 @@ Data_Emirates_tif_1km = projectRaster(Data_Emirates_10km_tif, PM25_2015_GRW)
 Data_Emirates_tif_1km <- crop(Data_Emirates_tif_1km, extent(shp_UAE))
 Data_Emirates_tif_1km <- mask(Data_Emirates_tif_1km, shp_UAE)
 
-file.Emirates_tif_1km <- paste0("AOD_MOD04_1km_UAE","_",folder_day,".tif")
-Emirates_tif_1km_tiff <- writeRaster(Data_Emirates_tif_1km, filename = file.Emirates_tif_1km, format = 'GTiff', overwrite = T)
+file.Emirates_tif_1km <- paste0("PM25_MODIS_1km_UAE","_",folder_day,".tif")
+Emirates_tif_1km_tiff <- writeRaster(Data_Emirates_tif_1km*94, filename = file.Emirates_tif_1km, format = 'GTiff', overwrite = T)
 
 ### Extract points from raster tiff ############################################
 
@@ -339,6 +364,8 @@ write_csv(Emirates_tif_1km_pts , paste0("Emirates_tif_1km.csv","_",folder_day,".
 
 library(leaflet)
 
+# linear conversion AOD into PM25
+Emirates_tif_1km_tiff <- Data_Emirates_tif_1km*94
 
 # define color palette
 rast_pal_EMIRATES <- colorNumeric(c("#9999FF", "#ffd699", "#FFFF00", "#ffbf00", "#ffc700", "#FF0000", "#994c00"),
@@ -358,7 +385,8 @@ map <- leaflet() %>%
                  opacity = 0.6,
                  group = "AOD_EMIRATES") %>%
   addLegend("bottomright", pal = rast_pal_EMIRATES, values = values(Emirates_tif_1km_tiff),# values = c(MIN_data, MAX_data),
-            title = paste("<br><strong>AOD (MODIS-5km)",folder_day,"</strong>"),
+#            title = paste("<br><strong>AOD (MODIS-5km)",folder_day,"</strong>"),
+            title = "<br><strong>PM<sub>2.5</sub> (<font face=symbol>m</font>g/m<sup>3</sup>)(1km): </strong>",
             labFormat = labelFormat(prefix = ""),
             opacity = 0.6) %>%
   addPolygons(stroke = TRUE, data = shp_UAE,
@@ -372,7 +400,7 @@ map <- leaflet() %>%
 # map
 
 # save map
-saveWidget(map, paste0("AOD_Emirates","_",folder_day,".html"), selfcontained = FALSE)
+saveWidget(map, paste0("PM25_MODIS","_",folder_day,".html"), selfcontained = FALSE)
 
 
 
