@@ -80,16 +80,54 @@ filenames_Aqua = paste(url_Aqua, strsplit(filenames_Aqua, "\r*\n")[[1]], sep = "
 
 # select only files in the time range as in the Overpass time
 
+
+tryCatch({
 Overpass_times_Terra <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Terra_",
                                         current_date,".csv"))
+}, error= function(err) { print(paste0("No TERRA Today"))
+
+}, finally = {
+
+})
+
+tryCatch({
 Overpass_times_Aqua <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Aqua_",
                                        current_date,".csv"))
+}, error= function(err) { print(paste0("No AQUA Today"))
 
+}, finally = {
+
+})
+
+# Overpass_times_Terra <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Terra_",
+#                                         current_date,".csv"))
+# Overpass_times_Aqua <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Aqua_",
+#                                        current_date,".csv"))
+
+# matches_Terra <- unique (grep(paste(Overpass_times_Terra$x,collapse="|"), 
+#                         filenames_Terra, value=TRUE))
+# 
+# matches_Aqua <- unique (grep(paste(Overpass_times_Aqua$x,collapse="|"), 
+#                               filenames_Aqua, value=TRUE))
+
+
+tryCatch({
 matches_Terra <- unique (grep(paste(Overpass_times_Terra$x,collapse="|"), 
-                        filenames_Terra, value=TRUE))
+                              filenames_Terra, value=TRUE))
+}, error= function(err) { print(paste0("No TERRA Today"))
+  
+}, finally = {
+  
+})
 
+tryCatch({
 matches_Aqua <- unique (grep(paste(Overpass_times_Aqua$x,collapse="|"), 
-                              filenames_Aqua, value=TRUE))
+                             filenames_Aqua, value=TRUE))
+}, error= function(err) { print(paste0("No AQUA Today"))
+  
+}, finally = {
+  
+})
 
 
 # create a new working directory for each download date
@@ -101,11 +139,31 @@ setwd(paste0(wd,"/",folder_year))
 dir.create(folder_day)
 setwd(paste0(wd,"/",folder_year,"/", folder_day))
 
+
+
+# filenames_MODIS_10k_Terra <- unlist(str_extract_all(matches_Terra, ".+(.hdf$)"))
+# filenames_MODIS_10k_Terra <- sort(filenames_MODIS_10k_Terra)
+# 
+# filenames_MODIS_10k_Aqua <- unlist(str_extract_all(matches_Aqua, ".+(.hdf$)"))
+# filenames_MODIS_10k_Aqua <- sort(filenames_MODIS_10k_Aqua)
+
+tryCatch({
 filenames_MODIS_10k_Terra <- unlist(str_extract_all(matches_Terra, ".+(.hdf$)"))
 filenames_MODIS_10k_Terra <- sort(filenames_MODIS_10k_Terra)
+}, error= function(err) { print(paste0("No AQUA Today"))
+  
+}, finally = {
+  
+})
 
+tryCatch({
 filenames_MODIS_10k_Aqua <- unlist(str_extract_all(matches_Aqua, ".+(.hdf$)"))
 filenames_MODIS_10k_Aqua <- sort(filenames_MODIS_10k_Aqua)
+}, error= function(err) { print(paste0("No AQUA Today"))
+  
+}, finally = {
+  
+})
 
 # start downloading data in the main directory -----------------------
 
@@ -347,7 +405,8 @@ Data_Emirates_tif_1km <- crop(Data_Emirates_tif_1km, extent(shp_UAE))
 Data_Emirates_tif_1km <- mask(Data_Emirates_tif_1km, shp_UAE)
 
 file.Emirates_tif_1km <- paste0("PM25_MODIS_1km_UAE","_",folder_day,".tif")
-Emirates_tif_1km_tiff <- writeRaster(Data_Emirates_tif_1km*94, filename = file.Emirates_tif_1km, format = 'GTiff', overwrite = T)
+# Emirates_tif_1km_tiff <- writeRaster(Data_Emirates_tif_1km*94, filename = file.Emirates_tif_1km, format = 'GTiff', overwrite = T)
+Emirates_tif_1km_tiff <- writeRaster(Data_Emirates_tif_1km*115, filename = file.Emirates_tif_1km, format = 'GTiff', overwrite = T)
 
 ### Extract points from raster tiff ############################################
 
@@ -365,7 +424,8 @@ write_csv(Emirates_tif_1km_pts , paste0("Emirates_tif_1km.csv","_",folder_day,".
 library(leaflet)
 
 # linear conversion AOD into PM25
-Emirates_tif_1km_tiff <- Data_Emirates_tif_1km*94
+# Emirates_tif_1km_tiff <- Data_Emirates_tif_1km*94
+Emirates_tif_1km_tiff <- Data_Emirates_tif_1km*115
 
 # define color palette
 rast_pal_EMIRATES <- colorNumeric(c("#9999FF", "#ffd699", "#FFFF00", "#ffbf00", "#ffc700", "#FF0000", "#994c00"),

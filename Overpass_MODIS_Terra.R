@@ -27,11 +27,11 @@ Overpass_time <- as.data.frame(str_sub(Overpass[,1], start = 13, end = -63))
 colnames(Overpass_time) <- "overpass_time"
 
 # generate a sequence of dates
-days_1 <- seq(ISOdate(2017,06,01), by = "day", length.out = 80)
+days_1 <- seq(ISOdate(2017,06,01), by = "day", length.out = 81)
 days_1 <- as.data.frame(str_sub(days_1, start = 1, end = -10))
 colnames(days_1) <- "date"
 
-days_2 <- seq(ISOdate(2017,09,22), by = "day", length.out = 15)
+days_2 <- seq(ISOdate(2017,08,22), by = "day", length.out = 15)
 days_2 <- as.data.frame(str_sub(days_2, start = 1, end = -10))
 colnames(days_2) <- "date"
 

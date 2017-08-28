@@ -14,7 +14,9 @@ cd $mainPath
 /apps/R/R-3.3.2/bin/Rscript /home/fkaragulian/MODIS_AOD/Overpass_MODIS_Terra.R
 /apps/R/R-3.3.2/bin/Rscript /home/fkaragulian/MODIS_AOD/Overpass_MODIS_Aqua.R
 sleep 1m
-/apps/R/R-3.3.2/bin/Rscript /home/fkaragulian/MODIS_AOD/MODIS_download_10K.R
+# /apps/R/R-3.3.2/bin/Rscript /home/fkaragulian/MODIS_AOD/MODIS_download_10K.R
+/apps/R/R-3.3.2/bin/Rscript /home/fkaragulian/MODIS_AOD/MODIS_download_10K_NEW_29June2015_HPC.R
+
 #/apps/R/R-3.3.2/bin/Rscript  /home/fkaragulian/ECMWF_forecasts/CAMS_NRT_download.R
 
 #Rscript /home/fkaragulian/MODIS_AOD/Overpass_MODIS_Terra.R

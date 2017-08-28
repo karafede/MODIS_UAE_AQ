@@ -20,8 +20,8 @@ library(htmlwidgets)
 # setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2016_Terra_Aqua")
 # wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2016_Terra_Aqua")
 
-setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2015_Terra_Aqua")
-wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2015_Terra_Aqua")
+setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2017_Terra_Aqua")
+wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2017_Terra_Aqua")
 
 
 # list data for each directory

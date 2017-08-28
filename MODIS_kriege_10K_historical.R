@@ -17,15 +17,27 @@ library(htmlwidgets)
 
 ### data ectraction from HDF files -----------------------------------------------
 
+
+# setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2017_Terra_Aqua")
+# wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2017_Terra_Aqua")
+
 # setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2016_Terra_Aqua")
 # wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2016_Terra_Aqua")
 
 # setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2015_Terra_Aqua")
 # wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2015_Terra_Aqua")
 
-setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2014_Terra_Aqua")
-wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2014_Terra_Aqua")
+# setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2014_Terra_Aqua")
+# wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2014_Terra_Aqua")
 
+# setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2013_Terra_Aqua")
+# wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2013_Terra_Aqua")
+
+# setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2012_Terra_Aqua")
+# wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2012_Terra_Aqua")
+
+setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2011_Terra_Aqua")
+wd <- setwd("/disk3/fkaragulian/MODIS_AOD/MODIS_LAADS_NASA/2011_Terra_Aqua")
 
 # list data for each directory
 DAYS <- str_sub(list.dirs(), start = 3, end = -1)
@@ -34,8 +46,10 @@ DAYS <- DAYS[-1]
 # make a look for each directory that corresponds to each day
 
 #-----START of the LOOP for all files------------------------
+# file <- filenames[1]
+# i <- 1
 
-for (i in 1:length(DAYS)) {
+ for (i in 1:length(DAYS)) {
   date <- DAYS[i]
   setwd(paste0(wd,"/",DAYS[i]))
   filenames <- list.files(pattern = "\\.hdf$") 
