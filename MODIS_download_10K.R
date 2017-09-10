@@ -81,14 +81,14 @@ filenames_Aqua = paste(url_Aqua, strsplit(filenames_Aqua, "\r*\n")[[1]], sep = "
 # select only files in the time range as in the Overpass time
 
 
-tryCatch({
-Overpass_times_Terra <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Terra_",
-                                        current_date,".csv"))
-}, error= function(err) { print(paste0("No TERRA Today"))
-
-}, finally = {
-
-})
+# tryCatch({
+# Overpass_times_Terra <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Terra_",
+#                                         current_date,".csv"))
+# }, error= function(err) { print(paste0("No TERRA Today"))
+# 
+# }, finally = {
+# 
+# })
 
 tryCatch({
 Overpass_times_Aqua <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Aqua_",
