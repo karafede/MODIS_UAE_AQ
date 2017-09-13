@@ -18,10 +18,18 @@ sleep 1m
  /apps/R/R-3.3.2/bin/Rscript /home/fkaragulian/MODIS_AOD/MODIS_download_10K.R
 
 # /apps/R/R-3.3.2/bin/Rscript ${mainPath}/MODIS_download_10K_NEW_29June2015_HPC.R
+#################################################################################################################################
+file_tiff=${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif
 
+if [ -f ${file_tiff} ] ; then 
+   echo "file exist : PM2.5 map created"
+else
+   echo "PM2.5 Creation failed"
+   /usr/bin/python ${mainPath}/sendMail.py "PM2.5 Creation failed: Date: ${year}  day: ${jday}" 
+fi
+###################################################################################################################################
 
 cd ${mainPath}/${year}/${jday}
-
 
 #cp -r ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif   ${dest}/${year}/${jday}   
 
