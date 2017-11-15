@@ -29,11 +29,11 @@ current_date <- str_sub(Sys.time(), start = 1, end = -10)
 str(current_date)
 
 ## 3km
-# url_list_data = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MOD04_3K/2016/"
+# url_list_data = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_3K/2016/"
 ## 10km MODIS Terra
-url_list_data_Terra = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MOD04_L2/2017/" 
+url_list_data_Terra = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_L2/2017/" 
 ## 10km MODIS Aqua
-url_list_data_Aqua = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MYD04_L2/2017/" 
+url_list_data_Aqua = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MYD04_L2/2017/" 
 
 
 # Terra
@@ -56,18 +56,18 @@ folder <- unlist(list_data_Aqua[n])
 
 
 # isolate folder name
-folder_year <- str_sub(folder, start = 74, end = -5)
-folder_day <- str_sub(folder, start = 79, end = -1) 
+folder_year <- str_sub(folder, start = 75, end = -5)
+folder_day <- str_sub(folder, start = 80, end = -1) 
 # folder_day <- "001"
 
-# url = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MOD04_3K/2016/",folder_day, "/", sep = "")
-# url = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MOD04_3K/2016/","349", "/", sep = "")
+# url = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_3K/2016/",folder_day, "/", sep = "")
+# url = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_3K/2016/","349", "/", sep = "")
 
 # Terra
-url_Terra = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MOD04_L2/2017/",folder_day, "/", sep = "")
+url_Terra = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_L2/2017/",folder_day, "/", sep = "")
 # Aqua
-url_Aqua = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MYD04_L2/2017/",folder_day, "/", sep = "")
-# url = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/6/MOD04_L2/2016/","350", "/", sep = "")
+url_Aqua = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MYD04_L2/2017/",folder_day, "/", sep = "")
+# url = paste("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_L2/2016/","350", "/", sep = "")
 
 # Terra
 filenames_Terra = getURL(url_Terra, ftp.use.epsv = FALSE, ftplistonly = TRUE, crlf = TRUE, ssl.verifypeer = FALSE) 
@@ -81,14 +81,14 @@ filenames_Aqua = paste(url_Aqua, strsplit(filenames_Aqua, "\r*\n")[[1]], sep = "
 # select only files in the time range as in the Overpass time
 
 
-# tryCatch({
-# Overpass_times_Terra <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Terra_",
-#                                         current_date,".csv"))
-# }, error= function(err) { print(paste0("No TERRA Today"))
-# 
-# }, finally = {
-# 
-# })
+tryCatch({
+Overpass_times_Terra <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Terra_",
+                                        current_date,".csv"))
+}, error= function(err) { print(paste0("No TERRA Today"))
+
+}, finally = {
+
+})
 
 tryCatch({
 Overpass_times_Aqua <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Aqua_",
@@ -103,11 +103,11 @@ Overpass_times_Aqua <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_ti
 #                                         current_date,".csv"))
 # Overpass_times_Aqua <- read.csv(paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Aqua_",
 #                                        current_date,".csv"))
-
-# matches_Terra <- unique (grep(paste(Overpass_times_Terra$x,collapse="|"), 
+# 
+# matches_Terra <- unique (grep(paste(Overpass_times_Terra$x,collapse="|"),
 #                         filenames_Terra, value=TRUE))
 # 
-# matches_Aqua <- unique (grep(paste(Overpass_times_Aqua$x,collapse="|"), 
+# matches_Aqua <- unique (grep(paste(Overpass_times_Aqua$x,collapse="|"),
 #                               filenames_Aqua, value=TRUE))
 
 

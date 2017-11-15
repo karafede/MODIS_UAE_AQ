@@ -5,6 +5,7 @@ library(lubridate)
 library(plyr)
 
 # read table about time when MODIS Terra overpass Abu Dhabi
+# https://oceandata.sci.gsfc.nasa.gov/cgi/overpass_pred
 # lat 24.4539
 # long 54.3773
 
@@ -65,30 +66,30 @@ minutes <- str_sub(Overpass$overpass_time[1], start = 4, end = -4)
 
 if (minutes == "00") {
   
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
   minutes <- as.numeric(minutes) 
-  current_overpass_time_plus <- paste0(".", hour,"0",minutes+5,".006.NRT")
+  current_overpass_time_plus <- paste0(".", hour,"0",minutes+5,".061.NRT")
   hour <- as.numeric(hour) 
-  current_overpass_time_minus <- paste0(".","0", hour-1,"55",".006.NRT")
+  current_overpass_time_minus <- paste0(".","0", hour-1,"55",".061.NRT")
   
 }
 
 
 
 if ((minutes == "05")) {
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
   minutes <- as.numeric(minutes) 
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,"0",minutes-5,".006.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,"0",minutes-5,".061.NRT")
   
 }
 
 
 if ( (minutes == "10") ) {
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
   minutes <- as.numeric(minutes) 
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,"0",minutes-5,".006.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,"0",minutes-5,".061.NRT")
   
 }
 
@@ -100,9 +101,9 @@ if ((minutes == "15")
     || (minutes == "35") || (minutes == "40") || (minutes == "45") || (minutes == "50")
     || (minutes == "55"))  {
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 
 }
 
@@ -110,100 +111,100 @@ if ((minutes == "15")
 if (minutes == "01" || (minutes == "02") || (minutes == "03") || (minutes == "04")) {
   minutes <- "05"
   minutes <- as.numeric(minutes)
-  current_overpass_time <- paste0(".",hour,"0",minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,"0", minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,"0",minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,"0", minutes-5,".061.NRT")
 }
 
 
 if (minutes == "06" || (minutes == "07") || (minutes == "08") || (minutes == "09")) {
   minutes <- "10"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,"0", minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,"0", minutes-5,".061.NRT")
 }
 
 
 if (minutes == "11" || (minutes == "12") || (minutes == "13") || (minutes == "14")) {
   minutes <- "15"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "16" || (minutes == "17") || (minutes == "18") || (minutes == "19")) {
   minutes <- "20"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "21" || (minutes == "22") || (minutes == "23") || (minutes == "24")) {
   minutes <- "25"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "26" || (minutes == "27") || (minutes == "28") || (minutes == "29")) {
   minutes <- "30"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "31" || (minutes == "32") || (minutes == "33") || (minutes == "34")) {
   minutes <- "35"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "36" || (minutes == "37") || (minutes == "38") || (minutes == "39")) {
   minutes <- "40"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "41" || (minutes == "42") || (minutes == "43") || (minutes == "44")) {
   minutes <- "45"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "46" || (minutes == "47") || (minutes == "48") || (minutes == "49")) {
   minutes <- "50"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_plus <- paste0(".",hour,minutes+5,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_plus <- paste0(".",hour,minutes+5,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
 }
 
 
 if (minutes == "51" || (minutes == "52") || (minutes == "53") || (minutes == "54")) {
   minutes <- "55"
   minutes <- as.numeric(minutes) 
-  current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
-  current_overpass_time_minus <- paste0(".",hour,minutes-5,".006.NRT")
+  current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
+  current_overpass_time_minus <- paste0(".",hour,minutes-5,".061.NRT")
   hour <- as.numeric(hour)
-  current_overpass_time_plus <- paste0(".","0",hour+1,"00",".006.NRT")
+  current_overpass_time_plus <- paste0(".","0",hour+1,"00",".061.NRT")
 }
 
 # replace 56, 57, 58, 59 with 00 and hour ==> + 1 !!!
@@ -215,10 +216,10 @@ minutes <- "55"
 # hour <- paste0("0",hour)
  minutes <- as.numeric(minutes) 
 
- current_overpass_time <- paste0(".",hour,minutes,".006.NRT")
+ current_overpass_time <- paste0(".",hour,minutes,".061.NRT")
  hour <- as.numeric(hour)
- current_overpass_time_plus <- paste0(".","0",hour+1,"00",".006.NRT")
- current_overpass_time_minus <- paste0(".","0",hour,"50",".006.NRT")
+ current_overpass_time_plus <- paste0(".","0",hour+1,"00",".061.NRT")
+ current_overpass_time_minus <- paste0(".","0",hour,"50",".061.NRT")
 }
 
 
