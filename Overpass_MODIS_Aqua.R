@@ -9,7 +9,8 @@ library(plyr)
 # lat 24.4539
 # long 54.3773
 
-setwd("/disk3/fkaragulian/MODIS_AOD/")
+setwd("/home/mariners/MODIS_AOD/")
+# setwd("D:/MODIS_AOD/")
 
 Sys.time()
 current_date <- str_sub(Sys.time(), start = 1, end = -10)
@@ -28,46 +29,53 @@ Overpass_time <- as.data.frame(str_sub(Overpass[,1], start = 13, end = -63))
 colnames(Overpass_time) <- "overpass_time"
 
 # generate a sequence of dates
-days_1 <- seq(ISOdate(2017,06,01), by = "day", length.out = 92)
+days_1 <- seq(ISOdate(2018,01,01), by = "day", length.out = 1)
 days_1 <- as.data.frame(str_sub(days_1, start = 1, end = -10))
 colnames(days_1) <- "date"
-days_2 <- seq(ISOdate(2017,09,01), by = "day", length.out = 2)
+
+days_2 <- seq(ISOdate(2018,01,03), by = "day", length.out = 15)
 days_2 <- as.data.frame(str_sub(days_2, start = 1, end = -10))
 colnames(days_2) <- "date"
 
 
-days_3 <- seq(ISOdate(2017,09,04), by = "day", length.out = 15)
+days_3 <- seq(ISOdate(2018,01,19), by = "day", length.out = 15)
 days_3 <- as.data.frame(str_sub(days_3, start = 1, end = -10))
 colnames(days_3) <- "date"
 
-days_3_bis <- seq(ISOdate(2017,09,20), by = "day", length.out = 15)
-days_3_bis <- as.data.frame(str_sub(days_3_bis, start = 1, end = -10))
-colnames(days_3_bis) <- "date"
 
-
-days_4 <- seq(ISOdate(2017,10,06), by = "day", length.out = 15)
+days_4 <- seq(ISOdate(2018,02,04), by = "day", length.out = 15)
 days_4 <- as.data.frame(str_sub(days_4, start = 1, end = -10))
 colnames(days_4) <- "date"
-days_5 <- seq(ISOdate(2017,10,22), by = "day", length.out = 70)
+
+
+days_5 <- seq(ISOdate(2018,02,20), by = "day", length.out = 102)
 days_5 <- as.data.frame(str_sub(days_5, start = 1, end = -10))
 colnames(days_5) <- "date"
 
 
-# days_6 <- seq(ISOdate(2017,04,22), by = "day", length.out = 15)
-# days_6 <- as.data.frame(str_sub(days_6, start = 1, end = -10))
-# colnames(days_6) <- "date"
-# days_7 <- seq(ISOdate(2017,05,08), by = "day", length.out = 15)
-# days_7 <- as.data.frame(str_sub(days_7, start = 1, end = -10))
-# colnames(days_7) <- "date"
+days_6 <- seq(ISOdate(2018,06,03), by = "day", length.out = 15)
+days_6 <- as.data.frame(str_sub(days_6, start = 1, end = -10))
+colnames(days_6) <- "date"
+
+
+days_7 <- seq(ISOdate(2018,06,19), by = "day", length.out = 42)
+days_7 <- as.data.frame(str_sub(days_7, start = 1, end = -10))
+colnames(days_7) <- "date"
+
 # days_8 <- seq(ISOdate(2017,05,24), by = "day", length.out = 8)
 # days_8 <- as.data.frame(str_sub(days_8, start = 1, end = -10))
 # colnames(days_8) <- "date"
 
 
-days <- rbind(days_1, days_2, days_3, days_3_bis, days_4, days_5)
-
+days <- rbind(days_1, days_2, days_3, days_4, days_5, days_6, days_7)
 
 Overpass <- cbind(days, Overpass_date, Overpass_time)
+
+
+########################################################################
+######## start overpass matching with today date and time ##############
+########################################################################
+
 
 # match the same date of the sys time
 match_date <- unique (grep(paste(current_date,collapse="|"), 
@@ -241,7 +249,7 @@ minutes <- "55"
 
 Overpass_times <- c(current_overpass_time,current_overpass_time_plus,
                     current_overpass_time_minus)
-write.csv(Overpass_times, paste0("/disk3/fkaragulian/MODIS_AOD/Overpass_times_Aqua_",
+write.csv(Overpass_times, paste0("/home/mariners/MODIS_AOD/Overpass_times_Aqua_",
                                  current_date,".csv"))
 
 #### --------- ########## ------------ ############## -------------- ######
