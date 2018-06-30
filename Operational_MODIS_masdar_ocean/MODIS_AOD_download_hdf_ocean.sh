@@ -10,10 +10,11 @@ year=`date +%Y`  ; jday=`date +%j`
 cd $mainPath
 
 
-Rscript ${mainPath}/Overpass_MODIS_Terra.R
-Rscript ${mainPath}/Overpass_MODIS_Aqua.R
-sleep 1m
-Rscript ${mainPath}/MODIS_download_10K_ocean.R
+# Rscript ${mainPath}/Overpass_MODIS_Terra.R
+# Rscript ${mainPath}/Overpass_MODIS_Aqua.R
+# sleep 1m
+# Rscript ${mainPath}/MODIS_download_10K_ocean.R
+Rscript ${mainPath}/download_MODIS_https.R
 
 #################################################################################################################################
 file_tiff=${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif
@@ -30,6 +31,7 @@ cd ${mainPath}/${year}/${jday}
 
 rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif pvernier@atlas-prod.minet.ae:/home/pvernier/scripts_cron/modis_data/
 rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif fkaragulian@cesam-uat:/home/pvernier/scripts_cron/modis_data/
+rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif fkaragulian@cesam-web-prod:/data/scripts_cron/modis_data/
 
 echo "fine"
 
