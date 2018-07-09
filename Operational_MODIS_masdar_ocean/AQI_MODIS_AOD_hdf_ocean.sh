@@ -20,6 +20,8 @@ cd ${mainPath}/${year}/${jday}
 
 rsync -avz ${mainPath}/${year}/${jday}/AQI_${jday}.geojson pvernier@atlas-prod.minet.ae:/home/pvernier/scripts_cron/modis_data/
 rsync -avz ${mainPath}/${year}/${jday}/AQI_${jday}.geojson fkaragulian@cesam-uat:/home/pvernier/scripts_cron/modis_data/
+rsync -avz ${mainPath}/${year}/${jday}/AQI_${jday}.geojson fkaragulian@cesam-web-prod:/data/scripts_cron/modis_data/
+
 
 echo "fine"
 

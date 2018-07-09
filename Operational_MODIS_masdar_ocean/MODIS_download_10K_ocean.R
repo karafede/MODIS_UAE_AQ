@@ -33,8 +33,11 @@ folder_year <- str_sub(current_date, start = 1, end = -7)
 # url_list_data = "ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_3K/2016/"
 ## 10km MODIS Terra
 url_list_data_Terra = paste0("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_L2/",folder_year,"/") 
+# url_list_data_Terra = paste0("https://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MOD04_L2/",folder_year,"/") 
+
 ## 10km MODIS Aqua
 url_list_data_Aqua = paste0("ftp://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MYD04_L2/",folder_year,"/")
+# url_list_data_Aqua = paste0("https://karafede:Password08@nrt3.modaps.eosdis.nasa.gov/allData/61/MYD04_L2/",folder_year,"/")
 
 
 # Terra
