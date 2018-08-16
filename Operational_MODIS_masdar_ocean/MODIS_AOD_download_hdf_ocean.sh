@@ -29,9 +29,10 @@ fi
 
 cd ${mainPath}/${year}/${jday}
 
-rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif pvernier@atlas-prod.minet.ae:/home/pvernier/scripts_cron/modis_data/
-rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif fkaragulian@cesam-uat:/home/pvernier/scripts_cron/modis_data/
-rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif fkaragulian@cesam-web-prod:/data/scripts_cron/modis_data/
+# rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif pvernier@atlas-prod.minet.ae:/home/pvernier/scripts_cron/modis_data/
+#rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif fkaragulian@cesam-uat:/home/pvernier/scripts_cron/modis_data/
+#rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif fkaragulian@cesam-web-prod:/data/scripts_cron/modis_data/
+rsync -avz ${mainPath}/${year}/${jday}/PM25_MODIS_1km_UAE_${jday}.tif mjweston@cesam-web-prod:/data/scripts_cron/modis_data/
 
 echo "fine"
 
