@@ -6,7 +6,7 @@
 ## The repositoriy contains code to process historical data of Aerosols Optical Depths from MODIS. Data were previously downloaded from https://ladsweb.modaps.eosdis.nasa.gov/search/
 
 See more etails here below:
-1)	<b> MODIS_reorganization.R <b>, order .hdf file by Julian day and create a folder for each day
+1)	<strong> MODIS_reorganization.R </strong>, order .hdf file by Julian day and create a folder for each day
 2)	<b> MODIS_kriege_10K_historical.R <b>  and/or <b> MODIS_download_10K_historical.R <b> extracts points from each .hdf files (from raster to points), it combine tiles and create a raster file only for UAE.
 3)	gather_tiff.R and geotiff_to_csv.R reoder all .tif file and extract points into a unique .csv file
 4)	In order the extract satellite data (from the above generated txt file) at the locations of monitoring stations, we used a Matlab code: Extract_SAT_Data_auto_FK_DG.m that you can find in the folder Z:\_SHARED_FOLDERS\Air Quality\Phase 1\Pathflow of Phase I_DG\Sat_AOD_Correlation
